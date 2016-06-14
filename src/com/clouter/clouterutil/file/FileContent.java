@@ -1,4 +1,4 @@
-package com.clouter.clouterutil.velocity;
+package com.clouter.clouterutil.file;
 
 public class FileContent {
 	private String fileName;

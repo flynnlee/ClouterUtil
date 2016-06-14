@@ -1,4 +1,4 @@
-package com.clouter.clouterutil;
+package com.clouter.clouterutil.file;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,13 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.clouter.clouterutil.velocity.FileContent;
 
 public class FileUtil {
 	private static final Log log = LogFactory.getLog(FileUtil.class);
@@ -80,5 +79,15 @@ public class FileUtil {
 	
 	public static void saveFileContent(FileContent content){
 		writeToFile(content.getFilePath() + "/" + content.getFileName(), content.getContent());
+	}
+	
+	/**
+	 * 根据项目内文件相对路径获得绝对路径
+	 * @param relativePath
+	 * @return - 文件不存在则返回null
+	 */
+	public static String getAbsolutePathInProeject(String relativePath){
+		URL url = new FileUtil().getClass().getClassLoader().getResource(relativePath);
+		return url == null ? null : url.getPath();
 	}
 }

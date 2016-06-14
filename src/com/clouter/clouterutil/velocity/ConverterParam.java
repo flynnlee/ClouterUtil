@@ -1,5 +1,7 @@
 package com.clouter.clouterutil.velocity;
 
+import com.clouter.clouterutil.file.FileContent;
+
 public class ConverterParam {
 	/**输入velocity的数据集合*/
 	private Object inputData;
