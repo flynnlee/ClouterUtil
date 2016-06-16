@@ -1,8 +1,16 @@
 package com.clouter.clouterutil.file;
 
+/**
+ * 一个文本文件的信息
+ * @author flynn
+ *
+ */
 public class FileContent {
+	/**文件名*/
 	private String fileName;
+	/**文件绝对路径*/
 	private String filePath;
+	/**文件内容*/
 	private String content;
 	
 	public String getFileName() {

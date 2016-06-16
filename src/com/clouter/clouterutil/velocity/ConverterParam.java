@@ -2,6 +2,11 @@ package com.clouter.clouterutil.velocity;
 
 import com.clouter.clouterutil.file.FileContent;
 
+/**
+ * 使用Velocity生成文本的所需的封装类
+ * @author flynn
+ *
+ */
 public class ConverterParam {
 	/**输入velocity的数据集合*/
 	private Object inputData;
@@ -9,7 +14,7 @@ public class ConverterParam {
 	private FileContent fileContent;
 	/**模板路径*/
 	private String vmFile;
-	/**编码*/
+	/**输出文件的编码*/
 	private String encodeStr;
 	
 	public ConverterParam(){
