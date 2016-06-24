@@ -28,4 +28,29 @@ public class StringUtil {
 		}
 		return list.toArray(new String[list.size()]);
 	}
+
+	/**
+	 * 自定义格式输出文本{0} {1}
+	 * @param s
+	 * @param objects
+	 * @return
+	 */
+	public static String format(String s,Object ...objects){
+		if(objects!=null&&objects.length>0){
+			StringBuilder sb = new StringBuilder();
+			int i=0;
+			sb.append("{").append(i).append("}");
+			int j = s.indexOf(sb.toString());
+			while(j>=0){
+				if(i<objects.length){
+					s=s.replace(sb.toString(), objects[i]==null?"":objects[i].toString());
+				}
+				i++;
+				sb = new StringBuilder();
+				sb.append("{").append(i).append("}");
+				j = s.indexOf(sb.toString());
+			}
+		}
+		return s;
+	}
 }
