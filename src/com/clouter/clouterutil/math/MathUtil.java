@@ -56,4 +56,9 @@ public class MathUtil {
 		}
 		return rt;
 	}
+	
+	public static <T>T random(List<T> list){
+		int index = new Random().nextInt(list.size());
+		return list.get(index);
+	}
 }
