@@ -61,4 +61,16 @@ public class MathUtil {
 		int index = new Random().nextInt(list.size());
 		return list.get(index);
 	}
+	
+	public static <T>List<T> random(List<T>list, int count){
+		count = Math.min(count, list.size());
+		List<T> rt = new LinkedList<>(list);
+		List<T> tmpList = new LinkedList<>(list);
+		for(int i = 0; i < count; i++){
+			T tmp = MathUtil.random(tmpList);
+			tmpList.remove(tmp);
+			rt.add(tmp);
+		}
+		return tmpList;
+	}
 }

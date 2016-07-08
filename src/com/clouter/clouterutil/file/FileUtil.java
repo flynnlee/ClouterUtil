@@ -48,7 +48,9 @@ public class FileUtil {
 		BufferedWriter bw = null;
 		try {
 			File file = new File(filePath);
-			if(!file.exists()){
+			if(file.exists()){
+				file.delete();
+			}else{
 				if(!file.getParentFile().exists()){
 					file.getParentFile().mkdirs();
 				}
