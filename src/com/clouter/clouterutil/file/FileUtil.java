@@ -3,13 +3,17 @@ package com.clouter.clouterutil.file;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -81,6 +85,33 @@ public class FileUtil {
 	
 	public static void saveFileContent(FileContent content){
 		writeToFile(content.getFilePath() + "/" + content.getFileName(), content.getContent());
+	}
+	
+	public static Properties readPropertiesFile(String filePath){
+		File file = new File(filePath);
+		try{
+			if(file.exists()){
+				Properties properties = new Properties();
+				properties.load(new FileInputStream(file));
+				return properties;
+			}
+		}catch(IOException e){
+			log.error("read properties " + filePath + " fail.", e);
+		}
+		return null;
+	}
+	
+	public static Map<String, String> readPropertiesFileToMap(String filePath){
+		Properties properties = readPropertiesFile(filePath);
+		if(properties == null){
+			return null;
+		}
+		Map<String, String> map = new HashMap<>();
+		for(String propertyName : properties.stringPropertyNames()){
+			String propertyValue = properties.getProperty(propertyName);
+			map.put(propertyName, propertyValue);
+		}
+		return map;
 	}
 	
 	/**
