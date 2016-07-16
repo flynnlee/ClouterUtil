@@ -77,7 +77,7 @@ public class MathUtil {
 	public static <T extends PercentValue>List<T> getPercentValue(List<T>list){
 		List<T> rt = new ArrayList<>();
 		for(T data : list){
-			if(new Random().nextInt(100) >= data.getPercent()){
+			if(new Random().nextInt(100) <= data.getPercent()){
 				rt.add(data);
 			}
 		}
