@@ -1,11 +1,11 @@
-package com.clouter.clouterutil.receiver;
+package com.clouter.clouterutil.reviver;
 
 /**
  * 数值恢复封装
  * @author flynn
  *
  */
-public class ValueTimeReceiver {
+public class ValueTimeReviver {
 	/**上次恢复的数值*/
 	private int lastValue;
 	/**上次恢复的时间*/
@@ -15,7 +15,7 @@ public class ValueTimeReceiver {
 	/**增长CD(毫秒)*/
 	private long growthCd;
 	
-	public ValueTimeReceiver(int value, long lastReceiveStamp, int maxValue, int growthCd){
+	public ValueTimeReviver(int value, long lastReceiveStamp, int maxValue, int growthCd){
 		this.lastValue = value;
 		this.lastReceiveStamp = lastReceiveStamp;
 		this.maxValue = maxValue;
