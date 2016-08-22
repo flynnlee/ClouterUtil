@@ -1,11 +1,12 @@
-import com.clouter.clouterutil.reviver.ValueTimeReviver;
+import org.apache.velocity.util.StringUtils;
 
 public class Test {
 	public static void main(String[] args) throws Exception{
-		ValueTimeReviver receiver = new ValueTimeReviver(0, System.currentTimeMillis(), 10, 2000);
-		while(true){
-			System.out.println(receiver.getValue() + " " + receiver.getNextReceiveCd());
-			Thread.sleep(200);
+		long m1 = System.currentTimeMillis();
+		for(int i = 0; i < 1000; i++){
+			StringUtils.split("aa,aa", ",");
 		}
+		long m2 = System.currentTimeMillis();
+		System.out.println(m2 - m1);
 	}
 }
