@@ -1,5 +1,7 @@
 package com.clouter.clouterutil.file;
 
+import com.clouter.clouterutil.StringUtil;
+
 /**
  * 一个文本文件的信息
  * @author flynn
@@ -12,7 +14,7 @@ public class FileContent {
 	private String filePath;
 	/**文件内容*/
 	private String content;
-	
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -31,11 +33,9 @@ public class FileContent {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	@Override
 	public String toString(){
-		StringBuilder builder = new StringBuilder();
-		builder.append("fileName:").append(fileName).append("\tfilePath:").append(filePath).append("\tcontent:").append(content);
-		return builder.toString();
+		return StringUtil.format("fileName:{0}\tfilePath{1}\tcontent:{2}", fileName, filePath, content);
 	}
 }

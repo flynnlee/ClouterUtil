@@ -14,55 +14,54 @@ import org.jdom2.input.SAXBuilder;
 
 public class XmlUtil {
 	private static final Log log = LogFactory.getLog(XmlUtil.class);
-	
+
 	public static String getAttributeValue(Element element, String name){
 		return element.getAttributeValue(name);
 	}
-	
+
 	public static Float getAttributeFloat(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Float.parseFloat(str);
 	}
-	
+
 	public static Double getAttributeDouble(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Double.parseDouble(str);
 	}
-	
+
 	public static Byte getAttributeByte(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Byte.parseByte(str);
 	}
-	
+
 	public static Short getAttributeShort(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Short.parseShort(str);
 	}
-	
+
 	public static Integer getAttributeInt(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Integer.parseInt(str);
 	}
-	
+
 	public static Long getAttributeLong(Element element, String name){
 		String str = getAttributeValue(element, name);
 		return str == null ? null : Long.parseLong(str);
 	}
-	
+
 	public static Element getRoot(String fileName){
-		Document doc = null;
+		Document doc;
 		try {
 			doc = new SAXBuilder().build(new File(fileName));
-		} catch (JDOMException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+			return doc.getRootElement();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return doc.getRootElement();
+		return null;
 	}
-	
+
 	public static Map<String, String> propertiesParse(Element element){
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		if(element != null){
 			for(Element propertyEle : element.getChildren("property")){
 				String key = getAttributeValue(propertyEle, "key");
@@ -73,7 +72,7 @@ public class XmlUtil {
 				}
 			}
 		}
-		
+
 		return map;
 	}
 }

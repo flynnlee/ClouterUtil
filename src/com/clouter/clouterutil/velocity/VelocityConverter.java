@@ -9,7 +9,7 @@ import org.apache.velocity.app.VelocityEngine;
 
 public class VelocityConverter {
 	private VelocityEngine engine;
-	
+
 	public VelocityConverter(){
 		engine = new VelocityEngine();
 //		engine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, "");
@@ -18,15 +18,15 @@ public class VelocityConverter {
 		engine.setProperty("runtime.log", "");
 		engine.init();
 	}
-	
+
 	public void convert(ConverterParam param){
 		Template template = engine.getTemplate(param.getVmFile(), param.getEncodeStr());
 		VelocityContext context = new VelocityContext();
 		context.put("inputData", param.getInputData());
-		
+
 		StringWriter writer = new StringWriter();
 		template.merge(context, writer);
-		
+
 		param.getFileContent().setContent(writer.toString());
 	}
 }

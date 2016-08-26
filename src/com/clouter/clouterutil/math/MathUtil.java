@@ -12,14 +12,28 @@ import org.apache.commons.logging.LogFactory;
 
 public class MathUtil {
 	private static Log logger = LogFactory.getLog(MathUtil.class);
-	
+	private static Random random = new Random(System.currentTimeMillis());
+
+	public static int randomInt(int value){
+		return random.nextInt(value);
+	}
+	public static byte randomByte(int value){
+		return (byte)random.nextInt(value);
+	}
+	public static short randomShort(int value){
+		return (short)random.nextInt(value);
+	}
+	public static boolean randomBoolean(){
+		return random.nextBoolean();
+	}
+
 	public static <T>T random(T[] values){
-		return values[new Random().nextInt(values.length)];
+		return values[random.nextInt(values.length)];
 	}
 	public static <T>T[] random(T[][] values){
-		return values[new Random().nextInt(values.length)];
+		return values[random.nextInt(values.length)];
 	}
-	
+
 	public static <T extends RandomWeight>T getRandomWeight(Collection<T> collection){
 		List<T> rt = getRandomWeight(1, collection, false);
 		if(rt == null || rt.isEmpty()) return null;
@@ -30,15 +44,15 @@ public class MathUtil {
 			logger.error("random weight collection not enough.");
 			return null;
 		}
-		List<T> rt = new ArrayList<T>(needCount);
-		
-		LinkedList<T> sourceList = new LinkedList<T>(collection);
+		List<T> rt = new ArrayList<>(needCount);
+
+		LinkedList<T> sourceList = new LinkedList<>(collection);
 		for(int i = 0; i < needCount; i++){
 			int sum = 0;
 			for(RandomWeight rw : sourceList){
 				sum += rw.getWeight();
 			}
-			int rdm = new Random().nextInt(sum);
+			int rdm = random.nextInt(sum);
 			int index = 0;
 			T result = null;
 			for(T rw : sourceList){
@@ -56,28 +70,28 @@ public class MathUtil {
 		}
 		return rt;
 	}
-	
+
 	public static <T>T random(List<T> list){
-		int index = new Random().nextInt(list.size());
+		int index = random.nextInt(list.size());
 		return list.get(index);
 	}
-	
+
 	public static <T>List<T> random(List<T>list, int count){
 		count = Math.min(count, list.size());
-		List<T> rt = new LinkedList<>(list);
+		List<T> rt = new LinkedList<>();
 		List<T> tmpList = new LinkedList<>(list);
 		for(int i = 0; i < count; i++){
 			T tmp = MathUtil.random(tmpList);
 			tmpList.remove(tmp);
 			rt.add(tmp);
 		}
-		return tmpList;
+		return rt;
 	}
-	
+
 	public static <T extends PercentValue>List<T> getPercentValue(List<T>list){
 		List<T> rt = new ArrayList<>();
 		for(T data : list){
-			if(new Random().nextInt(100) <= data.getPercent()){
+			if(random.nextInt(100) <= data.getPercent()){
 				rt.add(data);
 			}
 		}

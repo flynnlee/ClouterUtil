@@ -16,7 +16,7 @@ public class ConverterParam {
 	private String vmFile;
 	/**输出文件的编码*/
 	private String encodeStr;
-	
+
 	public ConverterParam(){
 		fileContent = new FileContent();
 	}
