@@ -5,17 +5,17 @@ package com.clouter.clouterutil.reviver;
  * @author flynn
  *
  */
-public class ValueTimeReviver {
+public class ValueFloatTimeReviver {
 	/**上次恢复的数值*/
-	private int lastValue;
+	private float lastValue;
 	/**上次恢复的时间*/
 	private long lastReceiveStamp;
 	/**最大值*/
-	private int maxValue;
+	private float maxValue;
 	/**增长CD(毫秒)*/
 	private long growthCd;
 
-	public ValueTimeReviver(int value, long lastReceiveStamp, int maxValue, int growthCd){
+	public ValueFloatTimeReviver(float value, long lastReceiveStamp, float maxValue, long growthCd){
 		this.lastValue = value;
 		this.lastReceiveStamp = lastReceiveStamp;
 		this.maxValue = maxValue;
@@ -24,19 +24,21 @@ public class ValueTimeReviver {
 
 	/**
 	 * 更新一次数值
+	 * @return - 本次更新数值的变化值
 	 */
-	public int updateValue(){
+	public float updateValue(){
 		if(lastValue >= maxValue){
 			return 0;
 		}
 
-		int preValue = lastValue;
+		float preValue = lastValue;
 		long currentMillis = getCurrentMillis();
 		if(lastReceiveStamp > currentMillis){
 			lastReceiveStamp = currentMillis;
 		}
-		int addValue = (int)((currentMillis - lastReceiveStamp) / growthCd);
-		lastReceiveStamp += addValue * growthCd;
+		long diff = currentMillis - lastReceiveStamp;
+		float addValue = (float)diff / (float)growthCd;
+		lastReceiveStamp += diff;
 
 		lastValue += addValue;
 		if(lastValue >= maxValue){
@@ -50,7 +52,7 @@ public class ValueTimeReviver {
 	 * 增减数值
 	 * @param value - 对数值的变化幅度
 	 */
-	public void adjValue(int value){
+	public void adjValue(float value){
 		if(value == 0) return;
 		updateValue();
 		this.lastValue += value;
@@ -70,7 +72,7 @@ public class ValueTimeReviver {
 	 * 获取当前数值
 	 * @return - 获取最新数值
 	 */
-	public int getValue(){
+	public float getValue(){
 		updateValue();
 		return lastValue;
 	}

@@ -1,12 +1,11 @@
-import org.apache.velocity.util.StringUtils;
+import com.clouter.clouterutil.StringUtil;
+import com.clouter.clouterutil.json.JsonFormater;
+import com.clouter.clouterutil.reviver.ValueFloatTimeReviver;
+import com.clouter.clouterutil.reviver.ValueTimeReviver;
 
 public class Test {
 	public static void main(String[] args) throws Exception{
-		long m1 = System.currentTimeMillis();
-		for(int i = 0; i < 1000; i++){
-			StringUtils.split("aa,aa", ",");
-		}
-		long m2 = System.currentTimeMillis();
-		System.out.println(m2 - m1);
+		System.out.println(StringUtil.isSuffix("abcdef", "f"));
+		System.out.println(StringUtil.isPrefix("abcdef", "x"));
 	}
 }

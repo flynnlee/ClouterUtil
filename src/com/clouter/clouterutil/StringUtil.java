@@ -8,6 +8,14 @@ public class StringUtil {
 		return str == null || str.isEmpty();
 	}
 
+	/**
+	 * 按指定字符串拆分字符串
+	 * 不支持正则表达式，提升效率
+	 * 若以分隔符结尾则忽略最后一个分隔符
+	 * @param str - 原字符串
+	 * @param delim - 分隔符
+	 * @return
+	 */
 	public static String[] split(String str, String delim){
 		if(str.isEmpty()) return new String[0];
 		int lastIndexOfDelim = str.lastIndexOf(delim);
@@ -52,5 +60,31 @@ public class StringUtil {
 			}
 		}
 		return s;
+	}
+
+	/**
+	 * 首字母大写
+	 * @param str
+	 * @return
+	 */
+	public static String upperCaseFirstChar(String str){
+		if(str.isEmpty()) return str;
+		return str.substring(0, 1).toUpperCase() + str.substring(1);
+	}
+
+	/**
+	 * 判断字符串str是否以suffix结尾
+	 * @param str
+	 * @param suffix
+	 * @return
+	 */
+	public static boolean isSuffix(String str, String suffix){
+		if(str.lastIndexOf(suffix) < 0) return false;
+		return str.substring(str.length() - suffix.length()).equals(suffix);
+	}
+
+	public static boolean isPrefix(String str, String prefix){
+		if(str.lastIndexOf(prefix) < 0) return false;
+		return str.substring(0, prefix.length()).equals(prefix);
 	}
 }

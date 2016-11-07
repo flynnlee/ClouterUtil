@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="clouter-util">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="clouter-util.jar">
+      <element id="module-output" name="ClouterUtil" />
+    </root>
+  </artifact>
+</component>
