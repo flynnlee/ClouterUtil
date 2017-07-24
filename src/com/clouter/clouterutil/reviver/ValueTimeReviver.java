@@ -26,16 +26,17 @@ public class ValueTimeReviver {
 	 * 更新一次数值
 	 */
 	public int updateValue(){
+		long currentMillis = getCurrentMillis();
 		if(lastValue >= maxValue){
+			lastReceiveStamp = getCurrentMillis();
 			return 0;
 		}
 
 		int preValue = lastValue;
-		long currentMillis = getCurrentMillis();
 		if(lastReceiveStamp > currentMillis){
 			lastReceiveStamp = currentMillis;
 		}
-		int addValue = (int)((currentMillis - lastReceiveStamp) / growthCd);
+		int addValue = growthCd == 0 ? 0 : (int)((currentMillis - lastReceiveStamp) / growthCd);
 		lastReceiveStamp += addValue * growthCd;
 
 		lastValue += addValue;

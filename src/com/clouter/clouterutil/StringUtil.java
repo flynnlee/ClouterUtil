@@ -1,5 +1,7 @@
 package com.clouter.clouterutil;
 
+import com.clouter.clouterutil.math.MathUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,16 @@ public class StringUtil {
 	}
 
 	/**
+	 * 首字母小写
+	 * @param str
+	 * @return
+	 */
+	public static String lowerCaseFirstChar(String str){
+		if(str.isEmpty()) return str;
+		return str.substring(0, 1).toLowerCase() + str.substring(1);
+	}
+
+	/**
 	 * 判断字符串str是否以suffix结尾
 	 * @param str
 	 * @param suffix
@@ -86,5 +98,20 @@ public class StringUtil {
 	public static boolean isPrefix(String str, String prefix){
 		if(str.lastIndexOf(prefix) < 0) return false;
 		return str.substring(0, prefix.length()).equals(prefix);
+	}
+
+	private static final String RANDOM_STR="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	/**
+	 * 返回一个指定长度的随机字符串(只包括数字大小写英文字母)
+	 * @param len
+	 * @return
+	 */
+	public static String randomStr(int len) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0, strL = RANDOM_STR.length(); i < len; i++) {
+			int index = MathUtil.randomInt(strL);
+			sb.append(RANDOM_STR.charAt(index));
+		}
+		return sb.toString();
 	}
 }

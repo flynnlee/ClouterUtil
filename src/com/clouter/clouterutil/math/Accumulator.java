@@ -15,6 +15,27 @@ public class Accumulator<K> {
 	public void adjCount(K key, int count){
 		if(map.containsKey(key)){
 			map.put(key, map.get(key) + count);
+		}else{
+			map.put(key, count);
 		}
+	}
+
+	private Map.Entry<K, Integer> getMaxCountEntry(){
+		Map.Entry<K, Integer> rt = null;
+		for(Map.Entry<K, Integer> entry : map.entrySet()){
+			if(rt == null || rt.getValue() < entry.getValue()){
+				rt = entry;
+			}
+		}
+		return rt;
+	}
+
+	public K getMaxCountKey(){
+		Map.Entry<K, Integer> entry = getMaxCountEntry();
+		return entry == null ? null : entry.getKey();
+	}
+	public int getMaxCount(){
+		Map.Entry<K, Integer> entry = getMaxCountEntry();
+		return entry == null ? null : entry.getValue();
 	}
 }

@@ -56,6 +56,9 @@ public class MathUtil {
 			int index = 0;
 			T result = null;
 			for(T rw : sourceList){
+				if(rw.getWeight() == 0){
+					continue;
+				}
 				if(rdm >= index && rdm < index + rw.getWeight()){
 					result = rw;
 					break;
